@@ -28,6 +28,8 @@ public class Graph {
         System.out.println("--- Min Cuts ---");
         minCut();
     }
+
+    // find all paths with current data
     public boolean findPath(){
         LinkedList<Integer> q = new LinkedList<>();
         for( int i = 0; i< vertexCt; ++i){
@@ -49,6 +51,8 @@ public class Graph {
         maxFlow();
         return G[vertexCt - 1].visited;
     }
+
+    // Find the maxFlow of one path
     public void maxFlow(){
         ArrayList<Integer> list  = new ArrayList<>();
         GraphNode end = G[vertexCt -1];
@@ -75,6 +79,7 @@ public class Graph {
         updateFlow(check);
     }
 
+    // Subtract maxFlow from capacity
     public void updateFlow(int flow) {
         GraphNode end = G[vertexCt - 1];
         while (end != G[0]) {
@@ -88,6 +93,8 @@ public class Graph {
             }
         }
     }
+
+    // Find Capacity 0 paths and add them to list for printing
     public void minCut(){
         ArrayList<GraphNode.EdgeInfo> list = new ArrayList<>();
         Queue<GraphNode> q = new LinkedList<>();
@@ -109,6 +116,7 @@ public class Graph {
             System.out.println(" " + i);
         }
     }
+    // Print all Edges that are used along with how many cases where used on that path
     public void usedEdges(){
         int check;
         for (GraphNode i : G){
@@ -143,7 +151,7 @@ public class Graph {
         }
         return sb.toString();
     }
-
+    // Make Graph
     public void makeGraph(String filename) {
         try {
             graphName = filename;
@@ -167,6 +175,7 @@ public class Graph {
         makeMatrix();
     }
 
+    // Build Matrix
     public void makeMatrix() {
         int[][] rGraph = new int[G.length][G.length];
         for (GraphNode i : G){
